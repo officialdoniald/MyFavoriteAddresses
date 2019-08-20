@@ -25,6 +25,11 @@
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\Bence\Desktop\Programok\officialdoniald\officialdoniald.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyAlias>officialdoniald</AndroidSigningKeyAlias>
+    <AndroidSigningStorePass>96kEHTPp2o0206</AndroidSigningStorePass>
+    <AndroidSigningKeyPass>96kEHTPp2o0206</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -96,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyFavoriteAddresses.BLL\MyFavoriteAddresses.BLL.csproj">
+      <Project>{76a7ea04-1bbf-4253-85ab-e375724aad66}</Project>
+      <Name>MyFavoriteAddresses.BLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -22,5 +22,16 @@ namespace MyFavoriteAddresses.Views
             SetContentView(Resource.Layout.addaddress_activity);
 
         }
+        //GoogleApiKey AIzaSyBbw1oWrCKjTnoM2vKt2qiDtp9N8GpqFDI
+        private void SerachForAddress()
+        {
+            //var settings = GoogleApiSettings.Builder
+            //                                .WithApiKey("api_key")
+            //                                .WithLanguage("nl")
+            //                                .WithType(PlaceTypes.Address)
+            //                                .WithLogger(new ConsoleLogger())
+            //                                .AddCountry("nl")
+            //                                .Build();
+        }
     }
 }
