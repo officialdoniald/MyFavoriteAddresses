@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android.App;
 using Android.Content;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace MyFavoriteAddresses.Views
 {
     [Activity(Label = "MyFavoriteAddresses", MainLauncher = true)]
-    public class MainActivity : Activity
+    public class MainActivity : Activity, IOnMapReadyCallback
     {
         #region Properties
 
         private Button _addAddressButton;
+
+        private DatabaseConnection _databaseConnection;
+
+        private List<BLL.Models.Places> places;
 
         #endregion
 
@@ -26,11 +28,18 @@ namespace MyFavoriteAddresses.Views
 
             SetContentView(Resource.Layout.main_activity);
 
+            var mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
+            mapFragment.GetMapAsync(this);
+
+            _databaseConnection = new DatabaseConnection();
+
+            places = _databaseConnection.GetPlaces();
+
             _addAddressButton = FindViewById<Button>(Resource.Id.addAddressButton);
 
             _addAddressButton.Click += AddAddressButton_Click;
         }
-
+        
         /// <summary>
         /// Navigate to the AddAddressActivity.
         /// </summary>
@@ -39,6 +48,22 @@ namespace MyFavoriteAddresses.Views
         private void AddAddressButton_Click(object sender, EventArgs e)
         {
             StartActivity(new Intent(this, typeof(AddAddressActivity)));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="googleMap"></param>
+        public void OnMapReady(GoogleMap googleMap)
+        {
+            foreach (var item in places)
+            {
+                MarkerOptions markerOpt = new MarkerOptions();
+                markerOpt.SetPosition(new LatLng(item.Latitude, item.Longitude));
+                markerOpt.SetTitle(item.Name);
+
+                googleMap.AddMarker(markerOpt);
+            }
         }
     }
 }
