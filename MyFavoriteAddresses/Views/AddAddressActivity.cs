@@ -4,25 +4,23 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Google.Places;
+using MyFavoriteAddresses.BLL.Helpers;
+using MyFavoriteAddresses.BLL.Models;
 
 namespace MyFavoriteAddresses.Views
 {
     [Activity(Label = "AddAddressActivity")]
     public class AddAddressActivity : Activity
     {
-        private DatabaseConnection _databaseConnection;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.addaddress_activity);
 
-            _databaseConnection = new DatabaseConnection();
-
             if (!PlacesApi.IsInitialized)
             {
-                PlacesApi.Initialize(this, "AIzaSyBbw1oWrCKjTnoM2vKt2qiDtp9N8GpqFDI");
+                PlacesApi.Initialize(this, GlobalVariables.GoogleApiKey);
             }
 
             List<Place.Field> fields = new List<Place.Field>
@@ -47,7 +45,14 @@ namespace MyFavoriteAddresses.Views
 
             if (data != null)
             {
-                _databaseConnection.StoreAddress(Autocomplete.GetPlaceFromIntent(data));
+                var place = Autocomplete.GetPlaceFromIntent(data);
+
+                Places places = new Places();
+
+                places.StorePlace(
+                    place.Name,
+                    place.LatLng.Longitude,
+                    place.LatLng.Latitude);
             }
 
             StartActivity(new Intent(this, typeof(MainActivity)));

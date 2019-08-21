@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyFavoriteAddresses.BLL.Helpers
+﻿namespace MyFavoriteAddresses.BLL.Helpers
 {
-    public class GlobalVariables
+    public static class GlobalVariables
     {
-        public string GoogleApiKey { get; set; }
+        /// <summary>
+        /// Google Api Key.
+        /// </summary>
+        public static string GoogleApiKey { get; set; }
     }
 }

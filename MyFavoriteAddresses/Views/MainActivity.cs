@@ -7,6 +7,8 @@ using Android.Gms.Maps.Model;
 using Android.OS;
 using Android.Widget;
 using MyFavoriteAddresses.Adapters;
+using MyFavoriteAddresses.BLL.Helpers;
+using MyFavoriteAddresses.BLL.Models;
 
 namespace MyFavoriteAddresses.Views
 {
@@ -18,9 +20,9 @@ namespace MyFavoriteAddresses.Views
         private Button _addAddressButton;
         private ListView _favddressListView;
 
-        private DatabaseConnection _databaseConnection;
+        private List<BLL.Models.Places> _places;
 
-        private List<BLL.Models.Places> places;
+        private readonly Places _place = new Places();
 
         #endregion
 
@@ -33,9 +35,7 @@ namespace MyFavoriteAddresses.Views
             var mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mapFragment.GetMapAsync(this);
 
-            _databaseConnection = new DatabaseConnection();
-            
-            places = _databaseConnection.GetPlaces();
+            _places = _place.GetItems();
 
             _addAddressButton = FindViewById<Button>(Resource.Id.addAddressButton);
 
@@ -43,7 +43,9 @@ namespace MyFavoriteAddresses.Views
 
             _favddressListView = FindViewById<ListView>(Resource.Id.favoriteAddressesListView);
 
-            _favddressListView.Adapter = new FavoriteAddressesAdapter(places);
+            _favddressListView.Adapter = new FavoriteAddressesAdapter(_places);
+            
+            GlobalVariables.GoogleApiKey = MyFavoriteAddresses.BLL.Properties.Resources.GoogleApiKey;
         }
         
         /// <summary>
@@ -62,7 +64,7 @@ namespace MyFavoriteAddresses.Views
         /// <param name="googleMap"></param>
         public void OnMapReady(GoogleMap googleMap)
         {
-            foreach (var item in places)
+            foreach (var item in _places)
             {
                 MarkerOptions markerOpt = new MarkerOptions();
                 markerOpt.SetPosition(new LatLng(item.Latitude, item.Longitude));
