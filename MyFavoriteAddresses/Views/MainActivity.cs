@@ -6,6 +6,7 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.OS;
 using Android.Widget;
+using MyFavoriteAddresses.Adapters;
 
 namespace MyFavoriteAddresses.Views
 {
@@ -15,6 +16,7 @@ namespace MyFavoriteAddresses.Views
         #region Properties
 
         private Button _addAddressButton;
+        private ListView _favddressListView;
 
         private DatabaseConnection _databaseConnection;
 
@@ -32,12 +34,16 @@ namespace MyFavoriteAddresses.Views
             mapFragment.GetMapAsync(this);
 
             _databaseConnection = new DatabaseConnection();
-
+            
             places = _databaseConnection.GetPlaces();
 
             _addAddressButton = FindViewById<Button>(Resource.Id.addAddressButton);
 
             _addAddressButton.Click += AddAddressButton_Click;
+
+            _favddressListView = FindViewById<ListView>(Resource.Id.favoriteAddressesListView);
+
+            _favddressListView.Adapter = new FavoriteAddressesAdapter(places);
         }
         
         /// <summary>

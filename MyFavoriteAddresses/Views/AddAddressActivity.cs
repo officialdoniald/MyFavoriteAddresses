@@ -35,6 +35,7 @@ namespace MyFavoriteAddresses.Views
 
             Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.Overlay, fields)
                 .SetCountry("US")
+                .SetCountry("UK")
                 .Build(this);
 
             StartActivityForResult(intent, 0);
@@ -44,7 +45,10 @@ namespace MyFavoriteAddresses.Views
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            _databaseConnection.StoreAddress(Autocomplete.GetPlaceFromIntent(data));
+            if (data != null)
+            {
+                _databaseConnection.StoreAddress(Autocomplete.GetPlaceFromIntent(data));
+            }
 
             StartActivity(new Intent(this, typeof(MainActivity)));
         }

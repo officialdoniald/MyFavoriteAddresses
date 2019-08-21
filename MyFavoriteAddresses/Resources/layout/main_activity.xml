@@ -3,12 +3,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-        <Button  
-            android:layout_width="match_parent"  
-            android:layout_height="wrap_content"  
+        <Button   
             android:id="@+id/addAddressButton"
+            android:layout_width="match_parent"  
+            android:layout_height="wrap_content" 
             android:text="@string/add_address" /> 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        <ListView
+            android:id="@+id/favoriteAddressesListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <fragment 
+          xmlns:android="http://schemas.android.com/apk/res/android"
           android:id="@+id/map"
           android:layout_width="match_parent"
           android:layout_height="match_parent"

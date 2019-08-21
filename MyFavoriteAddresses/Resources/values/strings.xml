@@ -1,4 +1,5 @@
 <resources>
   <string name="app_name">MyFavoriteAddresses</string>
   <string name="add_address">Add Address</string>
+  <string name="fav_address">Favorite address</string>
 </resources>
