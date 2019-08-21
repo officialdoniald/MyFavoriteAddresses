@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.ViewModels;
 using MyFavoriteAddresses.BLL.Models;
 
 namespace MyFavoriteAddresses.Adapters
@@ -12,13 +13,13 @@ namespace MyFavoriteAddresses.Adapters
 
     public class FavoriteAddressesAdapter : BaseAdapter<Places>
     {
-        private readonly List<Places> _addresses;
+        private readonly MvxObservableCollection<Places> _addresses;
 
         public override int Count => _addresses.Count;
 
         public override Places this[int position] => _addresses[position];
 
-        public FavoriteAddressesAdapter(List<Places> addresses)
+        public FavoriteAddressesAdapter(MvxObservableCollection<Places> addresses)
         {
             _addresses = addresses;
         }

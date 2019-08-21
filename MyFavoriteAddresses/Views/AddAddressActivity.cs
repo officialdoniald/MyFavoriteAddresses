@@ -4,13 +4,15 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Google.Places;
+using MvvmCross.Platforms.Android.Views;
 using MyFavoriteAddresses.BLL.Helpers;
 using MyFavoriteAddresses.BLL.Models;
+using MyFavoriteAddresses.BLL.ViewModels;
 
 namespace MyFavoriteAddresses.Views
 {
     [Activity(Label = "AddAddressActivity")]
-    public class AddAddressActivity : Activity
+    public class AddAddressActivity : MvxActivity<AddAddressActivityViewModel>
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

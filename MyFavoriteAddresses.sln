@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFavoriteAddresses", "MyFavoriteAddresses\MyFavoriteAddresses.csproj", "{5606BA38-6789-44BC-A852-F6D1E650E7E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFavoriteAddresses.BLL", "MyFavoriteAddresses.BLL\MyFavoriteAddresses.BLL.csproj", "{76A7EA04-1BBF-4253-85AB-E375724AAD66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFavoriteAddresses.BLL", "MyFavoriteAddresses.BLL\MyFavoriteAddresses.BLL.csproj", "{76A7EA04-1BBF-4253-85AB-E375724AAD66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
