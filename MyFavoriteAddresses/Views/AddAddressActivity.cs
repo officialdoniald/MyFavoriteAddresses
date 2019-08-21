@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Google.Places;
+using Java.Lang;
 using MvvmCross.Platforms.Android.Views;
 using MyFavoriteAddresses.BLL.Helpers;
 using MyFavoriteAddresses.BLL.Models;
@@ -45,7 +46,7 @@ namespace MyFavoriteAddresses.Views
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            if (data != null)
+            try
             {
                 var place = Autocomplete.GetPlaceFromIntent(data);
 
@@ -56,8 +57,12 @@ namespace MyFavoriteAddresses.Views
                     place.LatLng.Longitude,
                     place.LatLng.Latitude);
             }
+            catch (IllegalArgumentException)
+            {
+                //TODO Log
+            }
 
-            StartActivity(new Intent(this, typeof(MainActivity)));
+            ViewModel.Ready();
         }
     }
 }
